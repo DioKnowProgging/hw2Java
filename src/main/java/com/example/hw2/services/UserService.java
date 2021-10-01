@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
+
 
 @Service
 public class UserService {
@@ -59,9 +59,7 @@ public class UserService {
         return true;
     }
 
-        public void blocktoken(String email, String token){
-            blacklist.put(email, token);
-        }
+
 
     public User getUserByToken(String token){
         return users.get(TokenHelper.getEmailByToken(token));
