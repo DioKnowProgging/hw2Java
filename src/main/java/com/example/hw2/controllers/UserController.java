@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/read") public ResponseEntity readUserById(@RequestParam int id,@RequestHeader("Authorization") String token) {
-        if(!userService.validate(token.split(" ")[1])){
+        if(!userService.validate(token.split(" ")[0])){
             return new ResponseEntity("You don't have access to this method", HttpStatus.NOT_FOUND);
         }
         User user = userService.getUserById(id);
@@ -52,7 +52,7 @@ public class UserController {
 
     @PostMapping("/delete")
     public ResponseEntity deleteById(@RequestParam int id,@RequestHeader("Authorization") String token){
-        if(!userService.validate(token.split(" ")[1])){
+        if(!userService.validate(token.split(" ")[0])){
             return new ResponseEntity("You don't have access to this method", HttpStatus.NOT_FOUND);
         }
         userService.deleteById(id);
@@ -64,7 +64,7 @@ public class UserController {
             @RequestParam int id,
             @RequestBody User user,
             @RequestHeader("Authorization") String token){
-        if(!userService.validate(token.split(" ")[1])){
+        if(!userService.validate(token.split(" ")[0])){
             return new ResponseEntity("You don't have access to this method", HttpStatus.NOT_FOUND);
         }
         User user_old = userService.getUserById(id);
